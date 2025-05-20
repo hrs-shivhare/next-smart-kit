@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
-import { Roboto } from "next/font/google";
-import { ThemeProvider } from "@mui/material/styles";
+import { Roboto, Poppins } from "next/font/google";
 import theme from "../theme";
+import { NextAppProvider } from "@toolpad/core/nextjs";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import CallIcon from "@mui/icons-material/Call";
+import CallMadeIcon from "@mui/icons-material/CallMade";
+import CallReceivedIcon from "@mui/icons-material/CallReceived";
+import Chip from "@mui/material/Chip";
+import PersonIcon from "@mui/icons-material/Person";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -13,14 +19,11 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -34,12 +37,52 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={roboto.variable}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={roboto.variable} suppressHydrationWarning>
+      <body className={`${roboto.variable} ${poppins.variable} antialiased`}>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+          <NextAppProvider
+            theme={theme}
+            navigation={[
+              {
+                segment: "dashboard",
+                title: "Dashboard",
+                icon: <DashboardIcon />,
+              },
+              {
+                segment: "orders",
+                title: "Orders",
+                icon: <ShoppingCartIcon />,
+                pattern: "orders{/:orderId}*",
+              },
+              {
+                segment: "contacts",
+                title: "Contacts",
+                icon: <PersonIcon />,
+                action: <Chip label={7} color="primary" size="small" />,
+              },
+              {
+                segment: "calls",
+                title: "Calls",
+                icon: <CallIcon />,
+                children: [
+                  {
+                    segment: "made",
+                    title: "Made",
+                    icon: <CallMadeIcon />,
+                    action: <Chip label={12} color="success" size="small" />,
+                  },
+                  {
+                    segment: "received",
+                    title: "Received",
+                    icon: <CallReceivedIcon />,
+                    action: <Chip label={4} color="error" size="small" />,
+                  },
+                ],
+              },
+            ]}
+          >
+            {children}
+          </NextAppProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

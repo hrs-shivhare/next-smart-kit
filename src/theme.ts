@@ -5,7 +5,10 @@ const theme = createTheme({
   typography: {
     fontFamily: "var(--font-roboto)",
   },
-  cssVariables: true,
+  cssVariables: {
+    colorSchemeSelector: "data-toolpad-color-scheme",
+  },
+  colorSchemes: { light: true, dark: true },
 });
 
 export default theme;
