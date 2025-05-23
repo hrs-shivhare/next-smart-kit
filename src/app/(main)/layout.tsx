@@ -65,18 +65,18 @@ function ToolbarActionsSearch() {
 function CustomAppTitle() {
   return (
     <div className="flex flex-none items-center gap-4">
-      <Link href="https://rndapps.indianoil.in">
+      {/* <Link href="https://rndapps.indianoil.in">
         <Image
-          src="/iocl-rnd.png"
-          alt="IOCL R&D Logo"
+          src=""
+          alt=""
           priority
-          height={48}
-          width={100}
+          height={}
+          width={}
         />
-      </Link>
+      </Link> */}
 
       <div className="hover:dark:cyan-red-400 whitespace-nowrap bg-gradient-to-b from-cyan-500 to-violet-700 bg-clip-text font-poppins text-3xl font-bold text-transparent hover:from-cyan-600 hover:to-violet-800 dark:from-cyan-200 dark:to-violet-200 dark:hover:from-cyan-200 dark:hover:to-violet-300">
-        <Link href="/">R&D Centre</Link>
+        <Link href="/">Next SMART Kit</Link>
       </div>
     </div>
   );

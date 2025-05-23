@@ -24,7 +24,7 @@ function Copyright() {
   );
 }
 
-export default function Home() {
+export default async function Home() {
   return (
     <Container maxWidth="sm">
       <div className="my-4">

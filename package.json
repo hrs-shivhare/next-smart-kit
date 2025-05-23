@@ -1,5 +1,5 @@
 {
-  "name": "iocl-rnd-pwa",
+  "name": "next-smart-kit",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,10 +19,12 @@
     "@toolpad/core": "^0.15.0",
     "dayjs": "^1.11.13",
     "next": "15.3.1",
+    "oracledb": "^6.8.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.3",
-    "react-hook-form-mui": "^7.6.0"
+    "react-hook-form-mui": "^7.6.0",
+    "sequelize": "^6.37.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
